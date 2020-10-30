@@ -1,4 +1,5 @@
 
+/*
 import { ApolloServer } from 'apollo-server'
 import { typeDefs } from './schema'
 import { resolvers } from './resolvers'
@@ -14,5 +15,17 @@ const server = new ApolloServer({
 });
 
 server.listen(process.env.PORT || 400).then(({ url }) => {
+  console.log(`🚀 Server ready at ${url}`);
+});
+*/
+
+import { createLocalServer } from "./server"
+import { TodoRepo } from './modules/todos/repos/todoRepo';
+
+export type Context = { todosRepo: TodoRepo }
+
+const server = createLocalServer();
+
+server.listen().then(({ url }) => {
   console.log(`🚀 Server ready at ${url}`);
 });
